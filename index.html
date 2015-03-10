@@ -14,22 +14,44 @@
         <header id="banner" class="body">
                 <h1><a href="/">Cristina Green </a></h1>
                 <nav><ul>
-                    <li><a href="http://cristinagreen.com">Home</a></li>
+                    <li><a href="http://www.cristinagreen.com">Home</a></li>
                 </ul></nav>
         </header><!-- /#banner -->
 <section id="content" class="body">
     <h1 class="entry-title">DIY Spectrophotometer</h1>
     
-    <h3>Project Description</h3>
-<p>In this project we show how easy and inexpensive it is to assemble an instrument that analyzes the spectrum of light either absorbed by or emitted flourescently from a sample.  Several applications of this instrument will be demonstrated as part of the exhibit and include: </p>
+    <p>If you have an unknown liquid, looking at its spectrum can help you identify what it might contain. So we tried to build a spectrophotometer, using a webcam and inexpensive hardware-store pieces, to read the spectrum of a sample into a computer where it can be analyzed.</p>
+<p>This would allow individuals to do such things as:</p>
 <ul>
 <li>Detecting of crude and other oil-based contaminants in water samples</li>
 <li>Presence of pollutants such as pesticides and other chemicals</li>
 <li>Analysis of food and beverages</li>
 </ul>
-<p>The center-piece of the exhibit is a benchtop system where all the components of spectrometer are clearly laid out.  A notebook computer will allow interactive viewing of the spectra, and a selection of different samples will be available for analysis.</p>
-<p>Areas of software experimentation include the automatic matching of spectra to known substances.  Areas of hardware experimentation include more portable versions of a spectrophotometer and enhancements to the optical layer (such as extending range into near UV and near infrared).   Prototype stage work in these areas of software and hardware experimentation will be available to supplement the main exhibit. </p>
-<p>Our main motivation for this exhibit is to share and connect with other makers interested in building instruments and systems that help citizens and communities understand their exposure to harmful substances in the environment.</p>
+<p><br></p>
+<h1>The Spectrophotometer</h1>
+<p>Here is the design of our photospectrometer:</p>
+<p><img alt="Alt Text" src="/images/labelled_apparatus-600x450.jpg" /></p>
+<p><br></p>
+<h1>The Spectra</h1>
+<p>In order to be able to identify an unknown spectrum, we need to calibrate our spectrometer. We can do this using a known, strongly peaked light source, such as a fluorescent light. Since we know what the spectrum of this source should be, we can identify the peaks in our spectrum, and match them to the known wavelengths of those peaks, in order to determine the corresponding wavelengths to the horizontal points on our spectra.</p>
+<p>Here is the raw spectrum of a fluorescent light obtained from our spectrophotometer:</p>
+<p><img alt="Alt Text" src="/images/fluorescent.png" /></p>
+<p>And here's what the spectra looks like if you look at the intensities at different wavelengths:</p>
+<p><img alt="Alt Text" src="/images/fluorescentSpectraV1-600x388.png" /></p>
+<p><br></p>
+<h1>Some Test Cases</h1>
+<h2>Grape seed oil vs olive oil</h2>
+<p>Our spectrophotometer takes two samples at once, for easier calibration and comparison. In this case, we compare two different types of oil: grape seed oil on the top, and olive oil on the bottom.</p>
+<p><img alt="Alt Text" src="/images/grapeTopOliveBot.png" /></p>
+<p>In this case, we are using the spectrometer is flourescence mode.  It turns out a cheap laser pointer will do the trick.  These are uncalibrated images shown for qualitative purposes. But even without converting the spectrum images into line graphs, you can easily see that the olive oil is emitting in the red portion of spectrum in response to the laser, while the olive oil does not. </p>
+<p><br></p>
+<h1>Extensions</h1>
+<p>We will be updating this website with more details on designs and results as we refine our system. </p>
+<p>Areas of software experimentation include the automatic matching of spectra to known substances.  Areas of hardware experimentation include more portable versions of a spectrophotometer and enhancements to the optical layer (such as extending range into near UV and near infrared).</p>
+<p><br></p>
+<h1>Other Resources</h1>
+<p>The design we are currently working takes inspiration from designs discussed at Public Labs as well as a design described by sci-toys.
+<a href="http://publiclab.org/">Public Labs</a> has been working on a <a href="http://publiclab.org/wiki/spectrometer">DIY Spectrometer project</a> with a similar motivation; they have a lot of other very interesting DIY projects as well. They have kits available for <a href="http://store.publiclab.org/collections/spectrometry">purchase</a> for people who don't want to start from scratch, including portable versions.  Another useful source is <a href="http://sci-toys.com/scitoys/scitoys/light/spectrograph/spectrograph.html">sci-toys</a>, which also offers some useful supplies.</p>
 </section>
         <section id="extras" class="body">
                 <div class="social">
