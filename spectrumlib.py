@@ -1,6 +1,7 @@
 import numpy as np
 import cv2
 from matplotlib import pyplot as plt
+import sys
 
 def getSpectrum(filename):
     img = cv2.imread(filename)
@@ -10,6 +11,9 @@ def getSpectrum(filename):
     
 
 if __name__ == '__main__':
-    spectrum = getSpectrum('shear.png')
+    if len(sys.argv) > 1:
+        spectrum = getSpectrum(sys.argv[1])
+    else:
+        spectrum = getSpectrum('shear.png')
     plt.plot(spectrum)
     plt.show()

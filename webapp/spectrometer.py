@@ -11,11 +11,11 @@ def spectrum():
     if request.method == 'POST':
         description = request.form['description']
         description = description.translate({ord(c): None for c in punctuation + whitespace})
-        filename = "spectrum_{:s}_{:s}.jpg".format(description, datetime.now().isoformat())
+        filename = "spectrum_{:s}_{:s}.png".format(description, datetime.now().isoformat())
         os.system("wmctrl -a ' fps)'")
         os.system("wmctrl -r ' fps)' -b toggle,fullscreen")
         time.sleep(0.1)
-        os.system("gnome-screenshot -w -B -f static/" + filename)
+        os.system("import -window root -crop 350x200+1280+480 static/" + filename)
         os.system("wmctrl -r ' fps)' -b toggle,fullscreen")
         os.system("wmctrl -a localhost")
         return render_template('spectrometer.html', filepath=url_for('static', filename=filename))
