@@ -1,0 +1,101 @@
+<!DOCTYPE HTML>
+
+<html>
+
+<head>
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+
+<title>localhost</title>
+
+<h1>Fluorescent Bulb</h1>
+
+<img src="{{ url_for('static', filename='fluorescentspectrum.gif') }}">
+
+<form method="post">
+  <table class="table">
+    <tr>
+      <td class="label">
+	Position of Peak 5: 
+      </td>
+      <td>
+	<input type="text" name="peak5" class="numbers">
+      </td>
+    </tr>
+    <tr>
+      <td class="label">
+	Position of Peak 12:
+      </td>
+      <td>
+	<input type="text" name="peak12" class="numbers">
+      </td>
+      </tr>
+      <tr>
+      <td>
+	<input type="submit" value="Calibrate">
+      </td>
+    </tr>
+  </table>
+</form>
+
+<br>
+
+<h1>Two LEDs</h1>
+
+<form method="post">
+  <table class="table">
+    <tr>
+      <td class="heading">
+	First LED
+      </td>
+    </tr>
+    <tr>
+      <td class="label">
+	Wavelength: 
+      </td>
+      <td>
+	<input type="text" name="wavelength1" class="numbers">
+      </td>
+      <td class="space"></td>
+      <td class="label">
+	Position:
+      </td>
+      <td>
+	<input type="text" name="position1" class="numbers">
+      </td>
+    </tr>
+    <tr>
+      <td class="heading">
+	Second LED
+      </td>
+    </tr>
+    <tr>
+      <td class="label">
+	Wavelength:
+      </td>
+      <td>
+	<input type="text" name="wavelength2" class="numbers">
+      </td>
+      <td class="space"></td>
+      <td class="label">
+	Position:
+      </td>
+      <td>
+	<input type="text" name="position2" class="numbers">
+      </td>
+    </tr>
+    <tr>
+      <td>
+	<input type="submit" value="Calibrate">
+      </td>
+    </tr>
+  </table>
+
+</form>
+
+{% if filepath %}
+<img src='{{filepath}}'>
+{% endif %}
+
+</html>
