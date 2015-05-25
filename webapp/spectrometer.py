@@ -2,6 +2,7 @@ from flask import Flask, url_for, render_template, request, redirect
 from datetime import datetime
 from string import punctuation, whitespace
 import external
+import showspectrum
 import calibrate
 
 app = Flask(__name__)
@@ -13,9 +14,12 @@ def spectrum():
         description = description.translate({ord(c): None for c in punctuation + whitespace})
         filename = "spectrum_{:s}_{:s}.png".format(description, datetime.now().isoformat())
         external.takePicture(filename)
-        return render_template('spectrometer.html', filepath=url_for('static', filename="spectra/" + filename))
+        plotfile = showspectrum.exportSpectrum("static/spectra/" + filename)
+        return render_template('spectrometer.html', 
+                               filepath=url_for('static', filename="spectra/" + filename), 
+                               plotfile=plotfile)
     else:
-        return render_template('spectrometer.html', filepath=None)
+        return render_template('spectrometer.html', filepath=None, plotfile=None)
 
 @app.route('/calibrate', methods=['GET', 'POST'])
 def calibration():
