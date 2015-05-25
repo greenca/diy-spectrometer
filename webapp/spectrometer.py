@@ -1,8 +1,8 @@
-from flask import Flask, url_for, render_template, request
-import os
+from flask import Flask, url_for, render_template, request, redirect
 from datetime import datetime
-import time
 from string import punctuation, whitespace
+import external
+import calibrate
 
 app = Flask(__name__)
 
@@ -12,23 +12,29 @@ def spectrum():
         description = request.form['description']
         description = description.translate({ord(c): None for c in punctuation + whitespace})
         filename = "spectrum_{:s}_{:s}.png".format(description, datetime.now().isoformat())
-        takePicture(filename)
+        external.takePicture(filename)
         return render_template('spectrometer.html', filepath=url_for('static', filename="spectra/" + filename))
     else:
         return render_template('spectrometer.html', filepath=None)
 
 @app.route('/calibrate', methods=['GET', 'POST'])
 def calibration():
-    return render_template('calibration.html', filepath=None)
-
-def takePicture(filename):
-    os.system("wmctrl -a ' fps)'")
-    os.system("wmctrl -r ' fps)' -b toggle,fullscreen")
-    time.sleep(0.1)
-    os.system("import -window root -crop 350x200+1280+480 static/spectra/" + filename)
-    os.system("wmctrl -r ' fps)' -b toggle,fullscreen")
-    os.system("wmctrl -a localhost")
-
+    if request.method == 'GET':
+        filename = "calibration_{:s}.png".format(datetime.now().isoformat())
+        external.takePicture(filename)
+        external.showSpectrum(filename)
+        return render_template('calibration.html', filepath=None)
+    else:
+        calibration_type = request.form['calibration_type']
+        position1 = float(request.form['position1'])
+        position2 = float(request.form['position2'])
+        if calibration_type == 'led':
+            wavelength1 = float(request.form['wavelength1'])
+            wavelength2 = float(request.form['wavelength2'])
+            calibrate.calibrate(position1, position2, wavelength1, wavelength2)
+        else:
+            calibrate.calibrate(position1, position2)
+        return redirect('/')
 
 if __name__ == '__main__':
     app.debug = True

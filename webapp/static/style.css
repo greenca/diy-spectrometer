@@ -22,11 +22,11 @@ body {
     background: #e0e0e0; padding: 5px; padding-right: 15px; border: 1px solid #000;
 }
 
-input[type=text].numbers {
+input[type=number] {
     width: 200px; font-size: 20px; padding: 2px;
 }
 
-input[type=text].words {
+input[type=text] {
     width: 400px; font-size: 20px; padding: 2px;
 }
 

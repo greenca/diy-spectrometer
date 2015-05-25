@@ -14,13 +14,14 @@
 <img src="{{ url_for('static', filename='fluorescentspectrum.gif') }}">
 
 <form method="post">
+  <input type="hidden" name="calibration_type" value="fluorescent">
   <table class="table">
     <tr>
       <td class="label">
 	Position of Peak 5: 
       </td>
       <td>
-	<input type="text" name="peak5" class="numbers">
+	<input type="number" name="position1">
       </td>
     </tr>
     <tr>
@@ -28,7 +29,7 @@
 	Position of Peak 12:
       </td>
       <td>
-	<input type="text" name="peak12" class="numbers">
+	<input type="number" name="position2">
       </td>
       </tr>
       <tr>
@@ -44,6 +45,7 @@
 <h1>Two LEDs</h1>
 
 <form method="post">
+  <input type="hidden" name="calibration_type" value="led">
   <table class="table">
     <tr>
       <td class="heading">
@@ -55,14 +57,14 @@
 	Wavelength: 
       </td>
       <td>
-	<input type="text" name="wavelength1" class="numbers">
+	<input type="number" name="wavelength1">
       </td>
       <td class="space"></td>
       <td class="label">
 	Position:
       </td>
       <td>
-	<input type="text" name="position1" class="numbers">
+	<input type="number" name="position1">
       </td>
     </tr>
     <tr>
@@ -75,14 +77,14 @@
 	Wavelength:
       </td>
       <td>
-	<input type="text" name="wavelength2" class="numbers">
+	<input type="number" name="wavelength2">
       </td>
       <td class="space"></td>
       <td class="label">
 	Position:
       </td>
       <td>
-	<input type="text" name="position2" class="numbers">
+	<input type="number" name="position2">
       </td>
     </tr>
     <tr>

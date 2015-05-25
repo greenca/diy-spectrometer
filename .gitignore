@@ -1,0 +1,7 @@
+.ipynb_checkpoints
+makerfaire
+public
+webapp/static/spectra
+webapp/static/calibration.txt
+*.pyc
+*.py~
