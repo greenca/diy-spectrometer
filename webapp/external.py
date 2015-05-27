@@ -13,3 +13,8 @@ def takePicture(filename):
 def showSpectrum(filename):
     os.system("./showspectrum.py static/spectra/" + filename + " &")
 
+def getSpectrumFiles():
+    filepath = "static/spectra/"
+    filelist = os.listdir(filepath)
+    filelist.sort(key=lambda x: os.path.getmtime(os.path.join(filepath, x)), reverse=True)
+    return filelist

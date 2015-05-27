@@ -9,7 +9,9 @@ app = Flask(__name__)
 
 @app.route('/', methods=['GET', 'POST'])
 def spectrum():
-    if request.method == 'POST':
+    if request.method == 'GET':
+        return render_template('spectrometer.html', filepath=None, plotfile=None)
+    else:
         description = request.form['description']
         filetag = description.translate({ord(c): None for c in punctuation + whitespace})
         filename = "spectrum_{:s}_{:s}.png".format(filetag, datetime.now().isoformat())
@@ -18,8 +20,6 @@ def spectrum():
         return render_template('spectrometer.html', 
                                filepath=url_for('static', filename="spectra/" + filename), 
                                plotfile=plotfile)
-    else:
-        return render_template('spectrometer.html', filepath=None, plotfile=None)
 
 @app.route('/calibrate', methods=['GET', 'POST'])
 def calibration():
@@ -39,6 +39,16 @@ def calibration():
         else:
             calibrate.calibrate(position1, position2)
         return redirect('/')
+
+@app.route('/compare', methods=['GET', 'POST'])
+def compare():
+    if request.method == 'GET':
+        filelist = external.getSpectrumFiles()
+        return render_template('comparison.html', files=filelist)
+    else:
+        selectedfiles = request.form.getlist('file')
+        plotFile = showspectrum.compareSpectra(selectedfiles)
+        return "<img src='{:s}'>".format(plotFile)
 
 if __name__ == '__main__':
     app.debug = True

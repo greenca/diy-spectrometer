@@ -4,6 +4,7 @@ import numpy as np
 import cv2
 from matplotlib import pyplot as plt
 import sys
+from datetime import datetime
 
 def getSpectrum(filename):
     img = cv2.imread(filename)
@@ -30,6 +31,22 @@ def exportSpectrum(filename, description):
     plt.title(description)
     plt.xlabel("Wavelength (nm)")
     plt.ylabel("Intensity")
+    plt.savefig(plotfile)
+    plt.close()
+    return plotfile
+
+def compareSpectra(filelist):
+    plotfile = 'static/spectra/comparisonplot_{:s}.png'.format(datetime.now().isoformat())
+    for file in filelist:
+        spectrum = getSpectrum('static/spectra/' + file)
+        x = calibrateSpectrum(spectrum)
+        plt.plot(x, spectrum, label=file)
+    plt.xlabel("Wavelength (nm)")
+    plt.ylabel("Intensity")
+    plt.legend(bbox_to_anchor=(0., 1.02, 1., .102), loc=1, ncol=1, borderaxespad=0., mode="expand")
+    if len(filelist) > 2:
+        ymin, ymax = plt.ylim()
+        plt.ylim(ymax=1.2*ymax)
     plt.savefig(plotfile)
     plt.close()
     return plotfile

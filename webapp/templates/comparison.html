@@ -1,0 +1,29 @@
+<!DOCTYPE HTML>
+
+<html>
+
+<head>
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<title>localhost</title>
+
+<h2>Select spectrum files to compare:</h2>
+
+<form method="post">
+  <table>
+  <input type="submit" value="Compare Spectra">
+  {% for file in files %}
+  <tr>
+    <td>
+      <input type="checkbox" name="file" value="{{file}}">
+    </td>
+    <td class="label">
+      {{file}}
+    </td>
+  </tr>
+  {% endfor %}
+  </table>
+</form>
+
+</html>
