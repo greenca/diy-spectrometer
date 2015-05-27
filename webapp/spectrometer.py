@@ -11,10 +11,10 @@ app = Flask(__name__)
 def spectrum():
     if request.method == 'POST':
         description = request.form['description']
-        description = description.translate({ord(c): None for c in punctuation + whitespace})
-        filename = "spectrum_{:s}_{:s}.png".format(description, datetime.now().isoformat())
+        filetag = description.translate({ord(c): None for c in punctuation + whitespace})
+        filename = "spectrum_{:s}_{:s}.png".format(filetag, datetime.now().isoformat())
         external.takePicture(filename)
-        plotfile = showspectrum.exportSpectrum("static/spectra/" + filename)
+        plotfile = showspectrum.exportSpectrum("static/spectra/" + filename, description)
         return render_template('spectrometer.html', 
                                filepath=url_for('static', filename="spectra/" + filename), 
                                plotfile=plotfile)

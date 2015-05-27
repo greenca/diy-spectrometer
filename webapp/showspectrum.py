@@ -13,14 +13,25 @@ def getSpectrum(filename):
     spectrum = np.mean(gray, 0)
     return spectrum
 
-def exportSpectrum(filename):
-    print filename
+def calibrateSpectrum(spectrum):
+    x = range(len(spectrum))
+    with open('static/calibration.txt') as f:
+        params = f.read().split('\n')
+        m = float(params[0])
+        b = float(params[1])
+        x = [m*i + b for i in x]
+    return x
+
+def exportSpectrum(filename, description):
     spectrum = getSpectrum(filename)
-    print spectrum
+    x = calibrateSpectrum(spectrum)
     plotfile = '{:s}_plot.png'.format(filename.split('.')[0])
-    print plotfile
-    plt.plot(spectrum)
+    plt.plot(x, spectrum)
+    plt.title(description)
+    plt.xlabel("Wavelength (nm)")
+    plt.ylabel("Intensity")
     plt.savefig(plotfile)
+    plt.close()
     return plotfile
     
 
