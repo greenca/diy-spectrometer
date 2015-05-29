@@ -26,7 +26,7 @@ def calibrateSpectrum(spectrum):
 def exportSpectrum(filename, description):
     spectrum = getSpectrum(filename)
     x = calibrateSpectrum(spectrum)
-    plotfile = '{:s}_plot.png'.format(filename.split('.')[0])
+    plotfile = filename.replace('spectrum', 'plot', 1)
     plt.plot(x, spectrum)
     plt.title(description)
     plt.xlabel("Wavelength (nm)")

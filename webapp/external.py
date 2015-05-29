@@ -15,6 +15,7 @@ def showSpectrum(filename):
 
 def getSpectrumFiles():
     filepath = "static/spectra/"
-    filelist = os.listdir(filepath)
+    allfiles = os.listdir(filepath)
+    filelist = [file for file in allfiles if file.startswith('spectrum_')] 
     filelist.sort(key=lambda x: os.path.getmtime(os.path.join(filepath, x)), reverse=True)
     return filelist

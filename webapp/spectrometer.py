@@ -14,7 +14,7 @@ def spectrum():
     else:
         description = request.form['description']
         filetag = description.translate({ord(c): None for c in punctuation + whitespace})
-        filename = "spectrum_{:s}_{:s}.png".format(filetag, datetime.now().isoformat())
+        filename = "spectrum_{:s}_{:s}.png".format(filetag, datetime.now().isoformat().split('.')[0])
         external.takePicture(filename)
         plotfile = showspectrum.exportSpectrum("static/spectra/" + filename, description)
         return render_template('spectrometer.html', 
